@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    ArrayField,
     Filter,
     List,
     Edit,
@@ -70,6 +71,7 @@ export const CourseList = (props) => (
                     <TextField source="name" />
                     <TextField source="difficulty" />
                     <TextField source="description" />
+                    <TextField label="Lessons" source="lessons.length" />
                     <EditButton />
                 </Datagrid>
             }
@@ -89,9 +91,15 @@ export const CourseEdit = (props) => (
             <TextInput source="shortname" />
             <NumberInput source="difficulty" />
             <LongTextInput source="description" />
-            <ReferenceArrayInput label="Lessons" reference="lessons" source="lessons" optionValue="_id">
-                <AutocompleteArrayInput />
-            </ReferenceArrayInput>
+
+            <ArrayField source="lessons">
+                <Datagrid>
+                    <TextField source="name"/>
+                    <TextField source="prompt" />
+                    <TextField source="code" />
+                    <EditButton />
+                </Datagrid>
+            </ArrayField>
         </SimpleForm>
     </Edit>
 );
