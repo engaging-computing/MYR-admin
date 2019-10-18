@@ -21,7 +21,9 @@ import {
     Toolbar,
     NumberInput,
     ReferenceArrayInput,
-    AutocompleteArrayInput
+    AutocompleteArrayInput,
+    TabbedForm,
+    FormTab
 } from 'react-admin';
 
 const CourseFilter = (props) => (
@@ -87,22 +89,25 @@ const CourseTitle = ({ record }) => {
 
 export const CourseEdit = (props) => (
     <Edit title={<CourseTitle />} {...props}>
-        <SimpleForm toolbar={<CourseEditToolbar />}>
-            <DisabledInput source="_id" />
-            <TextInput source="name" />
-            <TextInput source="shortname" />
-            <NumberInput source="difficulty" />
-            <LongTextInput source="description" />
-
-            <ArrayInput source="lessons">
-                <SimpleFormIterator>
-                    <br />
-                    <TextInput source="name"/>
-                    <TextInput source="prompt" />
-                    <LongTextInput source="code" />
-                </SimpleFormIterator>
-            </ArrayInput>
-        </SimpleForm>
+        <TabbedForm toolbar={<CourseEditToolbar />}>
+            <FormTab label="Course Information">
+                <DisabledInput source="_id" />
+                <TextInput source="name" />
+                <TextInput source="shortname" />
+                <NumberInput source="difficulty" />
+                <LongTextInput source="description" />
+            </FormTab>
+            <FormTab label="Lessons">
+                <ArrayInput source="lessons">
+                    <SimpleFormIterator>
+                        <br />
+                        <TextInput source="name"/>
+                        <TextInput source="prompt" />
+                        <LongTextInput source="code" />
+                    </SimpleFormIterator>
+                </ArrayInput>
+            </FormTab>
+        </TabbedForm>
     </Edit>
 );
 
