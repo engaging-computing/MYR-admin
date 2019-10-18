@@ -102,7 +102,7 @@ export const CourseEdit = (props) => (
                     <SimpleFormIterator>
                         <br />
                         <TextInput source="name"/>
-                        <TextInput source="prompt" />
+                        <LongTextInput source="prompt" />
                         <LongTextInput source="code" />
                     </SimpleFormIterator>
                 </ArrayInput>
@@ -113,14 +113,23 @@ export const CourseEdit = (props) => (
 
 export const CourseCreate = (props) => (
     <Create {...props}>
-        <SimpleForm toolbar={<CourseCreateToolbar />}>
-            <TextInput source="name" validate={required()} />
-            <TextInput source="shortname" validate={required()} />
-            <NumberInput source="difficulty" validate={required()} />
-            <LongTextInput source="description" validate={required()} />
-            <ReferenceArrayInput label="Lessons" reference="lessons" source="lessons" optionValue="_id">
-                <AutocompleteArrayInput />
-            </ReferenceArrayInput>
-        </SimpleForm>
+        <TabbedForm toolbar={<CourseCreateToolbar />}>
+            <FormTab label="Course Information">
+                <TextInput source="name" validate={required()} />
+                <TextInput source="shortname" validate={required()} />
+                <NumberInput source="difficulty" validate={required()} />
+                <LongTextInput source="description" validate={required()} />
+            </FormTab>
+            <FormTab label="Lessons">
+                <ArrayInput source="lessons">
+                        <SimpleFormIterator>
+                            <br />
+                            <TextInput source="name"/>
+                            <LongTextInput source="prompt" />
+                            <LongTextInput source="code" />
+                        </SimpleFormIterator>
+                    </ArrayInput>
+            </FormTab>
+        </TabbedForm>
     </Create>
 );
