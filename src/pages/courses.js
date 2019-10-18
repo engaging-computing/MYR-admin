@@ -1,6 +1,8 @@
 import React from 'react';
+
 import {
-    ArrayField,
+    ArrayInput,
+    SimpleFormIterator,
     Filter,
     List,
     Edit,
@@ -92,14 +94,14 @@ export const CourseEdit = (props) => (
             <NumberInput source="difficulty" />
             <LongTextInput source="description" />
 
-            <ArrayField source="lessons">
-                <Datagrid>
-                    <TextField source="name"/>
-                    <TextField source="prompt" />
-                    <TextField source="code" />
-                    <EditButton />
-                </Datagrid>
-            </ArrayField>
+            <ArrayInput source="lessons">
+                <SimpleFormIterator>
+                    <br />
+                    <TextInput source="name"/>
+                    <TextInput source="prompt" />
+                    <LongTextInput source="code" />
+                </SimpleFormIterator>
+            </ArrayInput>
         </SimpleForm>
     </Edit>
 );
