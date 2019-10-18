@@ -14,14 +14,11 @@ import {
     DisabledInput,
     LongTextInput,
     required,
-    SimpleForm,
     SimpleList,
     TextInput,
     SaveButton,
     Toolbar,
     NumberInput,
-    ReferenceArrayInput,
-    AutocompleteArrayInput,
     TabbedForm,
     FormTab
 } from 'react-admin';
@@ -92,10 +89,10 @@ export const CourseEdit = (props) => (
         <TabbedForm toolbar={<CourseEditToolbar />}>
             <FormTab label="Course Information">
                 <DisabledInput source="_id" />
-                <TextInput source="name" />
-                <TextInput source="shortname" />
-                <NumberInput source="difficulty" />
-                <LongTextInput source="description" />
+                <TextInput source="name" validate={required()}/>
+                <TextInput source="shortname" validate={required()}/>
+                <NumberInput source="difficulty" validate={required()}/>
+                <LongTextInput source="description" validate={required()}/>
             </FormTab>
             <FormTab label="Lessons">
                 <ArrayInput source="lessons">
