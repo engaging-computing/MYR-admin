@@ -4,7 +4,6 @@ import { CourseList, CourseEdit, CourseCreate } from './pages/courses';
 import { ReferenceExamplesList, ReferenceExamplesEdit, ReferenceExamplesCreate } from './pages/referenceExamples';
 import { UserList, UserEdit, UserCreate } from './pages/users';
 import { SnapshotList, SnapshotShow } from './pages/snapshots';
-//import Icon from '@material-ui/core/Icon';
 import CourseIcon from '@material-ui/icons/List';
 import RefExIcon from '@material-ui/icons/Help';
 import UserIcon from '@material-ui/icons/SupervisedUserCircle';
