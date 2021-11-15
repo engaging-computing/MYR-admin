@@ -6,7 +6,6 @@ import {
     DateField,
     DateTimeInput,
     TextInput,
-    DisabledInput,
     SimpleList,
     EditButton,
     DeleteButton,
@@ -95,7 +94,7 @@ const NotifTitle = ({ record }) => {
 export const NotifEdit = (props) => (
     <Edit title={<NotifTitle />} {...props}>
         <SimpleForm toolbar={<NotifEditToolbar />}>
-            <DisabledInput source="_id" />
+            <TextInput disabled source="_id" />
             <TextInput source="title" />
             <TextInput source="message" validate={required()} />
             <TextInput label="Background Color" source="color" type="color" />

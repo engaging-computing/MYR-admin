@@ -8,7 +8,6 @@ import {
     DateField,
     BooleanInput,
     TextInput,
-    DisabledInput,
     SimpleList,
     EditButton,
     Toolbar,
@@ -83,7 +82,7 @@ const UserTitle = ({ record }) => {
 export const UserEdit = (props) => (
     <Edit title={<UserTitle />} {...props}>
         <SimpleForm toolbar={<UserEditToolbar />}>
-            <DisabledInput source="_id" />
+            <TextInput disabled source="_id" />
             <TextInput source="name" validate={required()} />
             <TextInput source="email" type="email" validate={required()} />
             <TextInput source="password" type="password" />

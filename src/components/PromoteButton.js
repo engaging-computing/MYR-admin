@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showNotification, CloneButton } from 'react-admin';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 
 
 const promoteEndpoint = "/apiv1/scenes/example";

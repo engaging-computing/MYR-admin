@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { propTypes, reduxForm, Field } from 'redux-form';
+import { Form, Field } from "react-final-form";
 import { connect } from 'react-redux';
-import compose from 'recompose/compose';
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Card, CardActions } from 'material-ui/Card';
-import Avatar from 'material-ui/Avatar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import LockIcon from 'material-ui/svg-icons/action/lock-outline';
-import { cyan500, pinkA200 } from 'material-ui/styles/colors';
+import {
+    Button,
+    Card,
+    CardActions,
+    TextField,
+    Avatar,
+} from "@mui/material";
+
+import {
+    ThemeProvider,
+    createTheme
+} from "@mui/material/styles";
+
+import { 
+    LockOutlined as LockIcon
+} from "@mui/icons-material";
+
+import { 
+    cyan,
+    pink
+} from "@mui/material/colors";
 
 import {
     Notification,
     userLogin as userLoginAction
 } from 'react-admin';
 
+//TODO - Create a .CSS files
 const styles = {
     main: {
         display: 'flex',
@@ -30,14 +43,17 @@ const styles = {
         minWidth: 300,
     },
     avatar: {
+        bgcolor:pink["A200"],
         margin: '1em',
-        textAlign: 'center ',
+        textAlign:"center",
+        verticalAlign:"middle",
     },
     form: {
         padding: '0 1em 1em 1em',
     },
     input: {
         display: 'flex',
+        marginTop:"1em",
     },
     directions: {
         textAlign: 'center',
@@ -46,97 +62,91 @@ const styles = {
     },
 };
 
-function getColorsFromTheme(theme) {
-    if (!theme) return { primary1Color: cyan500, accent1Color: pinkA200 };
-    const {
-        palette: {
-            primary1Color,
-            accent1Color,
-        },
-    } = theme;
-    return { primary1Color, accent1Color };
-}
-
 const renderInput = ({ meta: { touched, error } = {}, input: { ...inputProps }, ...props }) =>
-    <TextField
-        errorText={touched && error}
+    {
+    console.log(touched); 
+    console.log(error); 
+    return (<TextField
+        error={Boolean(touched) && Boolean(error)}
+        helperText={error}
         {...inputProps}
         {...props}
         fullWidth
-    />;
+    />); 
+};
 
-class Login extends Component {
+class LoginForm extends Component {
+    //Check if the input on textfields are not empty before submitting
+    //Called when user enter either email or password field
+    validate= (values) => {
+        const errors = {};
+        if (!values.username) errors.username = "Please enter an email.";
+        if (!values.password) errors.password = "Please enter a password.";
+        return errors;
+    }
 
-    login = ({ email, password }) => {
+    //called when the user submits the form and all validation passes
+    //will not be called if there's validation error
+    onSubmit = ({ email, password }) => {
         const { userLogin, location } = this.props;
         userLogin({ email, password }, location.state ? location.state.nextPathname : '/');
     }
 
-    render() {
-        const { handleSubmit, submitting, theme } = this.props;
-        const muiTheme = getMuiTheme(theme);
-        const { primary1Color, accent1Color } = getColorsFromTheme(muiTheme);
-        return (
-            <MuiThemeProvider muiTheme={muiTheme}>
-                <div style={{ ...styles.main, backgroundColor: primary1Color }}>
-                    <Card style={styles.card}>
-                        <div style={styles.avatar}>
-                            <Avatar backgroundColor={accent1Color} icon={<LockIcon />} size={60} />
+    render(){
+        return(
+        <Form
+            onSubmit={this.onSubmit}
+            validate={this.validate}>
+        {({ handleSubmit,submitting,theme})=>{
+            const muiTheme = createTheme(theme);
+            return (
+                <div style={{ ...styles.main, backgroundColor: cyan[500]}}>
+                <Card sx={styles.card}>
+                    <Avatar sx={styles.avatar} sizes="60">
+                        <LockIcon/>
+                    </Avatar>
+                <form onSubmit={handleSubmit}>
+                    <div style={styles.form}>
+                        <p style={styles.directions}>For administrative use only<br></br>
+                            To access MYR, please visit <a href="https://learnmyr.org">LearnMYR.org</a>.</p>
+                        <div style={styles.input}>
+                            <Field
+                                component={renderInput}
+                                name="username"
+                                label="Email"
+                                autoComplete="username"
+                            />
                         </div>
-                        <form onSubmit={handleSubmit(this.login)}>
-                            <div style={styles.form}>
-                                <p style={styles.directions}>For administrative use only<br></br>
-                                    To access MYR, please visit <a href="https://learnmyr.org">LearnMYR.org</a>.</p>
-                                <div style={styles.input} >
-                                    <Field
-                                        name="email"
-                                        component={renderInput}
-                                        floatingLabelText="Email"
-                                    />
-                                </div>
-                                <div style={styles.input}>
-                                    <Field
-                                        name="password"
-                                        component={renderInput}
-                                        floatingLabelText="Password"
-                                        type="password"
-                                    />
-                                </div>
-                            </div>
-                            <CardActions>
-                                <RaisedButton type="submit" primary disabled={submitting} label="Sign In" fullWidth />
-                            </CardActions>
-                        </form>
-                    </Card>
-                    <Notification />
-                </div>
-            </MuiThemeProvider>
-        );
+                        <div style={styles.input}>
+                            <Field
+                                component={renderInput}
+                                name="password"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                            />
+                        </div>
+                    </div>
+                    <CardActions>
+                        <Button variant="contained" type="submit" color="primary" disabled={submitting} fullWidth >Sign In</Button>
+                    </CardActions>
+                </form>
+            </Card>
+        </div>
+            );}}
+        </Form>);
     }
 }
 
-Login.propTypes = {
-    ...propTypes,
+
+LoginForm.propTypes = {
     authClient: PropTypes.func,
     previousRoute: PropTypes.string,
     theme: PropTypes.object.isRequired,
 };
 
-Login.defaultProps = {
+LoginForm.defaultProps = {
     theme: {},
 };
 
-const enhance = compose(
-    reduxForm({
-        form: 'signIn',
-        validate: (values, props) => {
-            const errors = {};
-            if (!values.username) errors.username = "Please enter an email.";
-            if (!values.password) errors.password = "Please enter a password.";
-            return errors;
-        },
-    }),
-    connect(null, { userLogin: userLoginAction }),
-);
-
-export default enhance(Login);
+export default connect(null, { userLogin: userLoginAction})(LoginForm);

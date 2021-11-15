@@ -8,8 +8,6 @@ import {
     Responsive,
     TextField,
     EditButton,
-    DisabledInput,
-    LongTextInput,
     SimpleForm,
     SimpleList,
     TextInput,
@@ -84,7 +82,7 @@ const ReferenceExamplesTitle = ({ record }) => {
 export const ReferenceExamplesEdit = (props) => (
     <Edit title={<ReferenceExamplesTitle />} {...props}>
         <SimpleForm toolbar={<ReferenceExamplesEditToolbar />}>
-            <DisabledInput source="_id" />
+            <TextInput disabled source="_id" />
             <TextInput source="functionName" />
             <SelectInput source="type" choices={[
                 { id: 'Geometry', name: 'Geometry' },
@@ -100,8 +98,8 @@ export const ReferenceExamplesEdit = (props) => (
             </ArrayInput>
             {/* <TextInput source="info" /> */}
             {/* <NumberInput source="difficulty" /> */}
-            <LongTextInput source="info" />
-            <LongTextInput source="code" />
+            <TextInput multiline source="info" />
+            <TextInput multiline source="code" />
             <ReferenceInput label="Suggested Course" reference="courses" source="suggestedCourse" optionValue="shortname">
                 <SelectInput optionText="name" optionValue="shortname" />
                 {/* <AutocompleteArrayInput /> */}
@@ -128,8 +126,8 @@ export const ReferenceExamplesCreate = (props) => (
                     <TextInput />
                 </SimpleFormIterator>
             </ArrayInput>
-            <LongTextInput source="info" />
-            <LongTextInput source="code" />
+            <TextInput multiline source="info" />
+            <TextInput multiline source="code" />
             <ReferenceInput label="Suggested Course" reference="courses" source="suggestedCourse" optionValue="shortname">
                 <SelectInput optionText="name" optionValue="shortname" />
                 {/* <AutocompleteArrayInput /> */}
