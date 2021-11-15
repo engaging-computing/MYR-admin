@@ -11,8 +11,6 @@ import {
     Responsive,
     TextField,
     EditButton,
-    DisabledInput,
-    LongTextInput,
     TextInput,
     NumberInput,
     BooleanInput,
@@ -89,19 +87,19 @@ export const CourseEdit = (props) => (
     <Edit title={<CourseTitle />} {...props}>
         <TabbedForm toolbar={<CourseEditToolbar />}>
             <FormTab label="Course Information">
-                <DisabledInput source="_id" />
+                <TextInput disabled source="_id" />
                 <TextInput source="name" validate={required()}/>
                 <TextInput source="shortname" validate={required()}/>
                 <NumberInput source="difficulty" validate={required()}/>
-                <LongTextInput source="description" validate={required()}/>
+                <TextInput multiline source="description" validate={required()}/>
             </FormTab>
             <FormTab label="Lessons">
                 <ArrayInput source="lessons">
                     <SimpleFormIterator>
                         <br />
                         <TextInput source="name"/>
-                        <LongTextInput source="prompt" />
-                        <LongTextInput source="code" />
+                        <TextInput multiline source="prompt" />
+                        <TextInput multiline source="code" />
                         <TextInput source="settings.skyColor" type="color" label="Sky Color" defaultValue="#ffffff" />
                         <BooleanInput source="settings.showFloor" label="Show Floor" />
                         <TextInput source="settings.floorColor" type="color" label="Floor Color" defaultValue="#000000" />
@@ -127,15 +125,15 @@ export const CourseCreate = (props) => (
                 <TextInput source="name" validate={required()} />
                 <TextInput source="shortname" validate={required()} />
                 <NumberInput source="difficulty" validate={required()} />
-                <LongTextInput source="description" validate={required()} />
+                <TextInput multiline source="description" validate={required()} />
             </FormTab>
             <FormTab label="Lessons">
                 <ArrayInput source="lessons">
                         <SimpleFormIterator>
                             <br />
                             <TextInput source="name"/>
-                            <LongTextInput source="prompt" />
-                            <LongTextInput source="code" />
+                            <TextInput multiline source="prompt" />
+                            <TextInput multiline source="code" />
                             <TextInput source="settings.skyColor" type="color" label="Sky Color" defaultValue="#ffffff" />
                             <BooleanInput source="settings.showFloor" label="Show Floor" />
                             <TextInput source="settings.floorColor" type="color" label="Floor Color" defaultValue="#000000" />
