@@ -14,15 +14,16 @@ import { NotifList, NotifEdit, NotifCreate } from './pages/Notifications';
 import { CollectionList, CollectionShow } from './pages/Collections';
 import { GoogleLoginList, GoogleLoginShow } from './pages/GoogleLogins';
 
-import CourseIcon from '@material-ui/icons/List';
-import RefExIcon from '@material-ui/icons/Help';
-import UserIcon from '@material-ui/icons/SupervisedUserCircle';
-import SnapshotIcon from '@material-ui/icons/CameraEnhance';
-import CollectionIcon from '@material-ui/icons/Filter';
-import SceneIcon from '@material-ui/icons/Landscape';
-import NotificationIcon from '@material-ui/icons/PriorityHigh';
-import GoogleLoginIcon from '@material-ui/icons/Face';
-
+import {
+  List                 as CourseIcon,
+  Help                 as RefExIcon,
+  SupervisedUserCircle as UserIcon,
+  CameraEnhance        as SnapshotIcon,
+  Filter               as CollectionIcon,
+  Landscape            as SceneIcon,
+  PriorityHigh         as NotificationIcon,
+  Face                 as GoogleLoginIcon
+} from "@mui/icons-material";
 
 const App = () => (
   <Admin dashboard={Dashboard} loginPage={loginPage} authProvider={authProvider} dataProvider={dataProvider}>
