@@ -10,8 +10,7 @@ import { Form, Field } from "react-final-form";
 import {
     Avatar,
     Button,
-    Card,
-    CardActions,
+    Paper,
     TextField,
 } from "@mui/material"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
@@ -38,7 +37,7 @@ const style = {
         justifyContent: 'center',
         backgroundColor: theme.palette.primary.main
     },
-    card:{
+    paper:{
         minWidth: 300,
         padding: '0 1em 1em 1em',
     },
@@ -98,7 +97,7 @@ class LoginPage extends Component {
         return (
             <ThemeProvider theme={theme}>
                 <div style={style.main}>
-                    <Card style={style.card}>
+                    <Paper style={style.paper}>
                         <div>
                             <Avatar style={style.avatar}>
                                 <LockIcon fontSize="large"/>
@@ -115,13 +114,11 @@ class LoginPage extends Component {
                                     <div/>
                                     <Field style={style.input} type="password" label="Password" name="password" component={this.inputComponent} autoComplete="password"/>
                                     <div/>
-                                    <CardActions disableSpacing>
-                                        <Button variant="contained" type="submit" disabled={submitting} fullWidth>Sign In</Button>
-                                    </CardActions>
+                                    <Button variant="contained" type="submit" disabled={submitting} fullWidth>Sign In</Button>
                                 </form>)
                             }
                         />
-                    </Card>
+                    </Paper>
                     <Notification/>
                 </div>
             </ThemeProvider>
