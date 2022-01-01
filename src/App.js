@@ -2,10 +2,10 @@ import React from 'react';
 import { Admin, Resource } from 'react-admin';
 
 import Dashboard from './pages/dashboard';
-import authProvider from './data_connections/authProvider';
-import dataProvider from './data_connections/dataProvider';
+import authProvider from './dataProvider/authProvider';
+import dataProvider from './dataProvider/dataProvider';
 import loginPage from './pages/LoginPage'
-import { SceneList, SceneShow } from './pages/Scenes';
+import scenes from './pages/scene';
 import { CourseList, CourseEdit, CourseCreate } from './pages/courses';
 import { ReferenceExamplesList, ReferenceExamplesEdit, ReferenceExamplesCreate } from './pages/referenceExamples';
 import { UserList, UserEdit, UserCreate } from './pages/users';
@@ -27,7 +27,7 @@ import {
 
 const App = () => (
   <Admin dashboard={Dashboard} loginPage={loginPage} authProvider={authProvider} dataProvider={dataProvider}>
-    <Resource name="scenes" list={SceneList} show={SceneShow} icon={SceneIcon} />
+    <Resource name="scenes" {...scenes} icon={SceneIcon} />
     <Resource name="collections" list={CollectionList} show={CollectionShow} icon={CollectionIcon} />
     <Resource name="courses" list={CourseList} edit={CourseEdit} create={CourseCreate} icon={CourseIcon} />
     <Resource name="referenceExamples" list={ReferenceExamplesList} edit={ReferenceExamplesEdit} create={ReferenceExamplesCreate} icon={RefExIcon} />
