@@ -20,14 +20,13 @@ import {
   SupervisedUserCircle as UserIcon,
   CameraEnhance        as SnapshotIcon,
   Filter               as CollectionIcon,
-  Landscape            as SceneIcon,
   PriorityHigh         as NotificationIcon,
   Face                 as GoogleLoginIcon
 } from "@mui/icons-material";
 
 const App = () => (
   <Admin dashboard={Dashboard} loginPage={loginPage} authProvider={authProvider} dataProvider={dataProvider}>
-    <Resource name="scenes" {...scenes} icon={SceneIcon} />
+    <Resource name="scenes" {...scenes} />
     <Resource name="collections" list={CollectionList} show={CollectionShow} icon={CollectionIcon} />
     <Resource name="courses" list={CourseList} edit={CourseEdit} create={CourseCreate} icon={CourseIcon} />
     <Resource name="referenceExamples" list={ReferenceExamplesList} edit={ReferenceExamplesEdit} create={ReferenceExamplesCreate} icon={RefExIcon} />

@@ -89,7 +89,7 @@ const LongMenu = (props) => {
           open={open}
           onClose={handleClose}>
             <ShowButton {...props}/><div/>
-            <EditButton {...props}/>
+            <EditButton {...props}/><div/>
             {props.type==="user" ? <PromoteButton {...props}/> : null}<div/>
             <DeleteButton  {...props}/>
         </Menu>
@@ -103,10 +103,10 @@ const TabbedDatagrid = (props)=>{
     //Picks attributes we are interested in
     const { data, ids, filterValues, setFilters, displayedFilters } = listContext;
 
-    //Extract uid(different from ids) from data we received
-    let uids = ids.map(id=>data[id].uid);
-    //Filter out the repeated uids and the uids isn't 1;
-    uids = [...new Set(uids.filter(uid=>uid!=="1"))];
+    // //Extract uid(different from ids) from data we received
+    // let uids = ids.map(id=>data[id].uid);
+    // //Filter out the repeated uids and the uids isn't 1;
+    // uids = [...new Set(uids.filter(uid=>uid!=="1"))];
 
     //State to keep track the ids for user and reference scenes
     const [userIds, setUserIds] = useState([]);
