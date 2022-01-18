@@ -13,6 +13,7 @@ const CodeDisplayField = (props) => {
         mode="javascript"
         theme="github"
         value={record[source]}
+        wrapEnabled={true}
         readOnly={true}
     />);
 }

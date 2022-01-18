@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showNotification, CloneButton } from 'react-admin';
+import { showNotification, CloneButton,} from 'react-admin';
 import { push } from 'connected-react-router';
 
 
 const promoteEndpoint = "/apiv1/scenes/example";
 
-class PromoteButton extends Component {
-    handleClick = () => {
-        const { push, record, showNotification } = this.props;
+const PromoteButton = ({ push, record, showNotification })=>{
+    const handleClick = () => {
         const updatedRecord = {...record, uid: "1"};
         const headers = {
             Accept: 'application/json',
@@ -17,18 +16,18 @@ class PromoteButton extends Component {
             'x-access-token': localStorage.getItem('token'),
             'content-type': 'application/json'
         };
-
-        fetch(promoteEndpoint, {method: "POST", headers: headers, body: JSON.stringify(updatedRecord)}).then(() => {
-            showNotification('Example Scene Created!');
-            push('/scenes');
-        }).catch((e) => {
-            showNotification("Error: Could not create Example Scene", 'warning');
-            push('/scenes');
-        });
+        console.log(updatedRecord);
+        if(window.confirm("Are you sure you want to Promote ${scene/scenes} to Example?")){   
+            fetch(promoteEndpoint, {method: "POST", headers: headers, body: JSON.stringify(updatedRecord)}).then(() => {
+                showNotification('Example Scene Created!');
+                push('/scenes');
+            }).catch((e) => {
+                showNotification("Error: Could not create Example Scene", 'warning');
+                push('/scenes');
+            });
+        }
     }
-    render() {
-        return <CloneButton label="Promote" onClick={this.handleClick} />
-    }
+    return <CloneButton label="Promote" onClick={handleClick} />
 }
 
 PromoteButton.propTypes = {
@@ -37,7 +36,9 @@ PromoteButton.propTypes = {
     showNotification: PropTypes.func,
 };
 
-export default connect(null, {
+export default connect(null, { 
     showNotification,
     push,
 })(PromoteButton);
+
+
