@@ -1,17 +1,14 @@
 import React from 'react';
 import {
-    List,
     Datagrid,
-    TextField,
-    TextInput,
-    SimpleList,
-    ShowButton,
-    Show,
-    SimpleShowLayout,
     DeleteButton,
-    Responsive,
     Filter,
-    ArrayField
+    List,
+    Responsive,
+    ShowButton,
+    SimpleList,
+    TextField,
+    TextInput
 } from 'react-admin';
 
 const CollectionFilter = (props) => (
@@ -21,7 +18,7 @@ const CollectionFilter = (props) => (
     </Filter>
 );
 
-export const CollectionList = (props) => (
+const CollectionList = (props) => (
     <List {...props} bulkActionButtons={false} filters={<CollectionFilter />}>
         <Responsive
             small={
@@ -42,22 +39,4 @@ export const CollectionList = (props) => (
     </List>
 );
 
-export const CollectionShow = (props) => {
-    return (
-        <Show {...props}>
-            <SimpleShowLayout>
-                <TextField source="_id" />
-                <TextField source="collectionID" />
-                <TextField source="uid" />
-
-                <ArrayField source="scenes">
-                    <Datagrid>
-                        <TextField source="_id" label="Scene ID" />
-                        <TextField source="name" />
-                        <TextField source="uid" label="Scene Owner ID" />
-                    </Datagrid>
-                </ArrayField>
-            </SimpleShowLayout>
-        </Show>
-    );
-}
+export default CollectionList;
