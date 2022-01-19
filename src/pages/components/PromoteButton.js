@@ -17,7 +17,7 @@ const PromoteButton = ({ push, record, showNotification })=>{
             'content-type': 'application/json'
         };
         console.log(updatedRecord);
-        if(window.confirm(`Are you sure you want to Promote \"${updatedRecord.name}\" to Example?`)){   
+        if(window.confirm(`Are you sure you want to Promote "${updatedRecord.name}" to Example?`)){   
             fetch(promoteEndpoint, {method: "POST", headers: headers, body: JSON.stringify(updatedRecord)}).then(() => {
                 showNotification('Example Scene Created!');
                 push('/scenes');
