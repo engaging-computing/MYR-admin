@@ -123,7 +123,7 @@ const TabbedDatagrid = (props)=>{
         }
     }, [ids, filterValues.uid]);
 
-    const handleChange = useCallback((e,val)=>{
+    const handleChange = useCallback((_,val)=>{
         if(setFilters){
             switch(val){
             case "1":
