@@ -1,17 +1,15 @@
 import React from 'react';
 import {
-    List,
-    Datagrid,
-    TextField,
     BooleanField,
-    DateField,
-    Responsive,
-    SimpleList,
-    SimpleShowLayout,
-    Show,
-    Filter,
     BooleanInput,
+    Datagrid,
+    DateField,
+    Filter,
+    List,
+    Responsive,
     ShowButton,
+    SimpleList,
+    TextField,
     TextInput
 } from 'react-admin';
 
@@ -34,7 +32,7 @@ const SnapshotFilter = (props) => (
     </Filter>
 );
 
-export const SnapshotList = (props) => (
+const SnapshotList = (props) => (
     <List title="Snapshots" {...props} bulkActionButtons={false} filters={<SnapshotFilter />}>
         <Responsive
             small={
@@ -59,14 +57,4 @@ export const SnapshotList = (props) => (
     </List>
 );
 
-export const SnapshotShow = (props) => (
-    <Show {...props}>
-        <SimpleShowLayout>
-            <TextField source="id" />
-            <TextField source="user" />
-            <TextField source="text" />
-            <BooleanField source="error" />
-            <DateField source="timestamp" showTime />
-        </SimpleShowLayout>
-    </Show>
-);
+export default SnapshotList;

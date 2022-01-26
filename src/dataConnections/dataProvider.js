@@ -132,7 +132,7 @@ export default (type, resource, params) => {
                     }
                     return {
                         data: data,
-                        total: total
+                        total: Number(total)
                     };
                 case GET_MANY:
                     data = response.map(record => ({ id: record._id, ...record }));
@@ -145,7 +145,7 @@ export default (type, resource, params) => {
                     }
                     return {
                         data: data,
-                        total: total
+                        total: Number(total)
                     };
                 case GET_MANY_REFERENCE:
                     if (!response.headers.has('content-range')) {
@@ -163,7 +163,7 @@ export default (type, resource, params) => {
                     }
                     return {
                         data: data,
-                        total: total,
+                        total: Number(total),
                     };
                 case CREATE:
                     return { data: { ...params.data, id: response.id } };
