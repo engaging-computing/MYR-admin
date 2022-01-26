@@ -36,7 +36,8 @@ const RefExEdit = (props) => (
                 { id: 'Transformation', name: 'Transformation' },
                 { id: 'Animation', name: 'Animation' },
                 { id: 'Group', name: 'Group' },
-                { id: 'Texture', name: 'Texture' }
+                { id: 'Texture', name: 'Texture' },
+                { id: 'Light', name: 'Light' }
             ]} />
             <ArrayInput source="functionParams">
                 <SimpleFormIterator>
