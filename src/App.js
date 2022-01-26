@@ -2,18 +2,18 @@ import React from 'react';
 import { Admin, Resource } from 'react-admin';
 
 import Dashboard from './pages/Dashboard';
-import authProvider from './dataProvider/authProvider';
-import dataProvider from './dataProvider/dataProvider';
+import authProvider from './dataConnections/authProvider';
+import dataProvider from './dataConnections/dataProvider';
 import loginPage from './pages/LoginPage'
 
 import scene        from './pages/scene';
-import googleLogin  from "./pages/googleLogin";
-import user         from "./pages/user";
-import snapshot     from "./pages/snapshot";
 import collection   from "./pages/collection";
-import notification from "./pages/notification";
-import referenceExample from "./pages/referenceExample";
 import course       from "./pages/course";
+import referenceExample from "./pages/referenceExample";
+import user         from "./pages/user";
+import googleLogin  from "./pages/googleLogin";
+import notification from "./pages/notification";
+import snapshot     from "./pages/snapshot";
 
 
 const App = () => (
